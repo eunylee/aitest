@@ -1,3 +1,24 @@
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+themeToggle.addEventListener('change', () => {
+  if (themeToggle.checked) {
+    body.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    body.classList.remove('dark-mode');
+    localStorage.setItem('theme', 'light');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    themeToggle.checked = true;
+    body.classList.add('dark-mode');
+  }
+});
+
 class LottoNumbers extends HTMLElement {
   constructor() {
     super();
@@ -9,12 +30,20 @@ class LottoNumbers extends HTMLElement {
     const ballsHTML = numbers.map(number => `<div class="ball">${number}</div>`).join('');
     this.shadowRoot.innerHTML = `
       <style>
+        :host {
+          --ball-bg-color: var(--button-bg-color-light);
+          --ball-text-color: var(--button-text-color-light);
+        }
+        body.dark-mode :host {
+          --ball-bg-color: var(--button-bg-color-dark);
+          --ball-text-color: var(--button-text-color-dark);
+        }
         .ball {
           width: 50px;
           height: 50px;
           border-radius: 50%;
-          background-color: #f1c40f;
-          color: #fff;
+          background-color: var(--ball-bg-color);
+          color: var(--ball-text-color);
           display: flex;
           justify-content: center;
           align-items: center;

@@ -1,1 +1,117 @@
-/* Add styles here */
+:root {
+  --background-color-light: #ffffff;
+  --text-color-light: #000000;
+  --button-bg-color-light: #f1c40f;
+  --button-text-color-light: #ffffff;
+  --container-bg-color-light: #f2f2f2;
+
+  --background-color-dark: #121212;
+  --text-color-dark: #ffffff;
+  --button-bg-color-dark: #f39c12;
+  --button-text-color-dark: #000000;
+  --container-bg-color-dark: #1e1e1e;
+}
+
+body {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: var(--container-bg-color-light);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+body.dark-mode .container {
+  background-color: var(--container-bg-color-dark);
+}
+
+#generate-btn {
+  background-color: var(--button-bg-color-light);
+  color: var(--button-text-color-light);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+body.dark-mode #generate-btn {
+  background-color: var(--button-bg-color-dark);
+  color: var(--button-text-color-dark);
+}
+
+#numbers-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  float: right;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
